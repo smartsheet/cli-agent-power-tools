@@ -30,7 +30,7 @@ Most teams try to lead with the most impressive demo. Most teams burn out on AI 
 
 ---
 
-## Sixty-second install
+## Quick install
 
 ```bash
 # 1. Install Claude Code
@@ -40,10 +40,13 @@ npm install -g @anthropic-ai/claude-code
 git clone https://github.com/smartsheet/cli-agent-power-tools
 cd cli-agent-power-tools
 
-# 3. Connect the Smartsheet MCP server
-claude mcp add --transport http smartsheet https://mcp.smartsheet.com
+# 3. Get your Smartsheet Personal Access Token
+# Go to Account > Personal Settings > API Access in Smartsheet to generate one
 
-# 4. Start Claude Code — Power Tools load automatically from .claude/agents/
+# 4. Run the Smartsheet MCP setup script
+./smartsheet_mcp_setup.sh
+
+# 5. Start Claude Code — Power Tools load automatically from .claude/agents/
 claude
 ```
 
