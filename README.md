@@ -43,8 +43,13 @@ cd cli-agent-power-tools
 # 3. Get your Smartsheet Personal Access Token
 # Go to Account > Personal Settings > API Access in Smartsheet to generate one
 
-# 4. Run the Smartsheet MCP setup script
+# 4. Set up Smartsheet MCP connection (choose one option):
+
+# Option A: Run the automated setup script
 ./smartsheet_mcp_setup.sh
+
+# Option B: Manual setup following Smartsheet's documentation
+# https://developers.smartsheet.com/ai-mcp/smartsheet/install-the-smartsheet-mcp-server/connect-claude-code
 
 # 5. Start Claude Code — Power Tools load automatically from .claude/agents/
 claude
