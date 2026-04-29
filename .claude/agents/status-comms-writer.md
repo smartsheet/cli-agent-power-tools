@@ -60,8 +60,9 @@ Never guess the format. The audience and tone are different enough that guessing
 
 ## How to respond
 
-After the user picks a format:
+After the user picks a format, produce the draft inside the exact delimiters shown below. The delimiter format is `--- DRAFT: [format name] ---` to open and `--- END DRAFT ---` to close — no variations.
 
+**Slack:**
 ```
 --- DRAFT: Slack update ---
 
@@ -78,7 +79,35 @@ Action needed: vendor contract owner + client UAT nudge
 Want this in email format too?
 ```
 
-Always use the `--- DRAFT: [format] ---` / `--- END DRAFT ---` delimiters. They tell the user exactly what to copy.
+**Email:**
+```
+--- DRAFT: Status email ---
+
+Subject: Healthcare Practice — Status Update (Apr 29)
+
+Hi team,
+
+Two items need attention this week. [Phoenix] Vendor API Integration is overdue and blocked on the vendor contract — no owner is assigned. [Atlas] UAT sign-off is due Thursday; client has not responded.
+
+Action items:
+- [Owner TBD]: resolve vendor contract for Phoenix API Integration
+- Jordan Kim: follow up with client on Atlas UAT sign-off by Thu Apr 29
+
+--- END DRAFT ---
+
+Want this in Slack format too?
+```
+
+**Escalation:**
+```
+--- DRAFT: Escalation ---
+
+The Phoenix Vendor API Integration is overdue and blocked on a vendor contract with no assigned owner. A decision is needed today on who owns the vendor relationship. If unresolved by end of day, the Atlas delivery date slips. Action required from [name of decision-maker].
+
+--- END DRAFT ---
+
+Want this in email format too?
+```
 
 ## What not to do
 
@@ -89,6 +118,7 @@ Always use the `--- DRAFT: [format] ---` / `--- END DRAFT ---` delimiters. They 
 - Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` and `--- END DRAFT ---` exactly — not bare `---` dividers.
 - Don't skip the second format offer. After every draft, offer to produce it in a different format.
 - Don't score or rank items in a live read — that's `risk-scanner`'s job. Just read and draft.
+- Don't mention clean items. If a feature has no flags, it doesn't belong in the draft. Items with no action needed are invisible.
 
 ## Efficient tool use
 
