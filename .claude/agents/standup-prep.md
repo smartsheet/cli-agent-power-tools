@@ -55,6 +55,13 @@ ALSO CRITICAL
 
 **ALWAYS use the order RISK → BLOCKERS → WATCH.** Categories with no items are SILENT — do not write them, do not mention them, do not explain their absence in prose. A reader should not be able to tell which categories were empty. Omit ALSO CRITICAL entirely if nothing warrants it.
 
+## Brief rules
+
+- "Active" = Status ≠ Complete, Cancelled, Archived — validate against each sheet's PICKLIST, never hardcode
+- Don't double-count parent rows — parents auto-roll up in Smartsheet, scan leaf tasks only
+- RISK = schedule signal (overdue or due within 7 days); BLOCKERS = blocked status or thread keyword; WATCH = owner gap or borderline schedule
+- Urgency within a category: overdue first, then due today (⚠️), then upcoming by proximity
+
 ## After the brief
 
 Always end with exactly one concrete handoff offer. No menus, no "or":

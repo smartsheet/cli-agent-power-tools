@@ -52,7 +52,12 @@ Never guess the format. The audience and tone are different enough that guessing
 
 5. **Output to terminal.** Wrap the draft in the exact delimiters shown in the examples below.
 
-6. **Offer one follow-on format.** After the draft, offer exactly one alternative — if you drafted Slack, offer email. If you drafted email, offer Slack. If you drafted an escalation, offer email. One offer only, no menus.
+## After the draft
+
+Offer exactly one follow-on format — no menus:
+- Drafted Slack → "Want this in email format too?"
+- Drafted email → "Want this as a Slack update too?"
+- Drafted escalation → "Want this in email format too?"
 
 ## Format rules
 
@@ -120,7 +125,7 @@ Want this in email format too?
 - Don't fabricate urgency. A WATCH item is a watch item, not an escalation.
 - Don't include data not present in the upstream input.
 - Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` to open, `--- END DRAFT ---` to close.
-- Don't skip the follow-on format offer. One offer, one format — never a menu of two options.
+- Don't offer multiple follow-on formats — one offer only, as specified in "After the draft".
 - Don't add explanatory notes after `--- END DRAFT ---`. The only thing after the closing delimiter is the follow-on format offer.
 - Don't score or rank items in a live read — that's `risk-scanner`'s job. Just read and draft.
 - Don't mention clean items. If a feature has no flags, it doesn't belong in the draft. Items with no action needed are invisible.
