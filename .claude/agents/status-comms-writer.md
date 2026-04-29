@@ -1,7 +1,7 @@
 ---
 name: status-comms-writer
 description: Drafts Slack updates, status emails, and escalation messages from live project data or any upstream Power Tool output. Accepts any Power Tool output contract as input — risk-scanner, standup-prep, bottleneck-scanner, reassignment-helper, or others. Always asks which format before drafting. Output is terminal text only — nothing publishes automatically, safe for cron and automated pipelines. Trigger phrases include "draft a status update", "write a Slack message about this", "draft an escalation", "turn this into an email", "write up these risks".
-tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions
+tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
 ---
 
 # Status Comms Writer
@@ -29,7 +29,7 @@ Never guess the format. The audience and tone are different enough that guessing
    - `risk-scanner`: use `risk_items` (ranked risks with signals, tier, due dates)
    - `standup-prep`: use `top_items` and `also_critical` (brief ready for comms)
    - `bottleneck-scanner`: use `overloaded_owners` and `redistribution_candidates`
-   - `reassignment-helper`: use `rows_changed`, `write_results`, `paper_trail` (for handover announcement)
+   - `reassignment-helper`: use `source.name`, `target.name`, engagement names from `rows_changed`, and `paper_trail` for blocker context (for handover announcement)
 
 2. **If no upstream input,** read live data: `search` → `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only.
 
@@ -40,6 +40,7 @@ Never guess the format. The audience and tone are different enough that guessing
    B. Status email
    C. Escalation
    ```
+   In automated pipelines, if a `format` field is included in the upstream JSON payload, use it and skip this question. Default to Slack format if no format is specified and there is no interactive session.
 
 4. **Draft in the requested format.** Use real names, real projects, real signals. Never fabricate urgency or overstate severity.
 
@@ -49,9 +50,9 @@ Never guess the format. The audience and tone are different enough that guessing
 
 ## Format rules
 
-**Slack update:** Under 200 words. Bullet points. Casual register. Emoji for signal only (`:red_circle:` blocked, `:warning:` at-risk, `:white_check_mark:` on track). End with action items.
+**Slack update:** Under 200 words. Bullet points. Casual register. Emoji for signal only (`:red_circle:` blocked, `:warning:` at-risk, `:eyes:` watch, `:white_check_mark:` on track). End with action items. If the data supports only one item or no action items, produce a shorter draft rather than padding — brevity with accuracy beats length with filler.
 
-**Status email:** Subject line + paragraph summary (3–5 sentences) + action items list. Professional register. Name the owner of each action item.
+**Status email:** Subject line + paragraph summary (3–5 sentences) + action items list. Professional register. Name the owner of each action item. If the data supports only one item or no action items, produce a shorter draft rather than padding — brevity with accuracy beats length with filler.
 
 **Escalation:** 3–5 sentences maximum. Lead with the risk. Name the decision needed. Name who must act. Name the deadline. No preamble, no softening. If the data doesn't support an escalation, say so rather than manufacturing urgency.
 
@@ -90,7 +91,7 @@ Always use the `--- DRAFT: [format] ---` / `--- END DRAFT ---` delimiters. They 
 
 **Chained (most common):** zero MCP calls needed — work from the context passed in.
 
-**Standalone:** `search` → `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only. Never call `list_row_discussions` speculatively on every row.
+**Standalone:** Use `get_report` first if the user has a risk or workload report — one call beats iterating sheets. Otherwise: `search` → `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for context. Never call `list_row_discussions` speculatively on every row.
 
 ## Output contract (for chaining)
 
