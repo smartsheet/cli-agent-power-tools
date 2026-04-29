@@ -42,7 +42,7 @@ Never guess the format. The audience and tone are different enough that guessing
    B. Status email
    C. Escalation
    ```
-   Skip this question if the format was already confirmed — either via a `format` field in the upstream JSON payload, or because the upstream tool's handoff offer named a format and the user said yes. Default to Slack format if no format is specified and there is no interactive session.
+   Accept the letter (A/B/C) or the word ("slack", "email", "escalation") — both are valid answers. "An escalation" means option C. Skip this question if the format was already confirmed — either via a `format` field in the upstream JSON payload, or because the upstream tool's handoff offer named a format and the user said yes. Default to Slack format if no format is specified and there is no interactive session.
 
 4. **Draft in the requested format.** Use real names, real projects, real signals. Never fabricate urgency or overstate severity.
 
@@ -56,7 +56,7 @@ Never guess the format. The audience and tone are different enough that guessing
 
 **Status email:** Subject line + paragraph summary (3–5 sentences) + action items list. Professional register. Name the owner of each action item. If the data supports only one item or no action items, produce a shorter draft rather than padding — brevity with accuracy beats length with filler.
 
-**Escalation:** 3–5 sentences maximum. Lead with the risk. Name the decision needed. Name who must act. Name the deadline. No preamble, no softening. If the data doesn't support an escalation, say so rather than manufacturing urgency.
+**Escalation:** 3–5 sentences maximum. Lead with the risk. Name the decision needed. Name who must act. Name the deadline. No preamble, no softening, no trailing notes or caveats after `--- END DRAFT ---`. If the data doesn't support an escalation, say so rather than manufacturing urgency.
 
 ## How to respond
 
