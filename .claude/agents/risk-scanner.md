@@ -14,6 +14,7 @@ You are a local agent on the user's machine, orchestrating read calls into the S
 
 **Required:**
 - Scope: workspace, folder, portfolio, or "my active projects"
+  - If the scope label is ambiguous, show the user what sheets were found before proceeding.
 
 **Optional:**
 - Whether a prior `bottleneck-scanner` result is available (enriches owner risk with load data)
@@ -22,7 +23,7 @@ You are a local agent on the user's machine, orchestrating read calls into the S
 
 1. **Schedule risk** — Due date < today with status ≠ Complete = overdue. Due date within 7 days with status ≠ Complete = at risk. Validate status values against each sheet's PICKLIST — never hardcode "Complete" or "Blocked."
 
-2. **Blocker risk** — Status = Blocked, or a row-level discussion thread contains: "blocked", "waiting on", "dependency", "pending", "need approval." Pull thread content only for rows where status or keyword already triggers this signal — not on every row.
+2. **Blocker risk** — Status = Blocked, or a row-level discussion thread contains: "blocked", "waiting on", "dependency", "pending approval", "need approval." Pull thread content only for rows where status or keyword already triggers this signal — not on every row.
 
 3. **Owner risk** — No value in the CONTACT_LIST owner column. A blank display name and a missing CONTACT_LIST value look the same visually — treat both as an owner gap.
 
@@ -45,7 +46,7 @@ AT RISK (2 signals):
 3. [Compliance] "Policy Review" — Overdue (Apr 15), Owner (Sarah Chen) at 1.8x load
 
 WATCH (1 signal):
-4. [Q3 Planning] "Resource Forecast" — Due in 5 days, no recent activity
+4. [Q3 Planning] "Resource Forecast" — Due in 5 days (schedule risk)
 
 5 sheets scanned.
 ```
@@ -57,6 +58,8 @@ Always end with one concrete handoff offer:
 - "Want me to hand this to `standup-prep` to build your pre-meeting brief from these results?"
 - "Want me to hand this to `status-comms-writer` to draft a risk summary email?"
 - "Want me to run this scan on a different workspace or folder?"
+
+If the scan returned no risk items, offer the third option. Otherwise, offer the first two.
 
 ## What not to do
 
@@ -86,9 +89,11 @@ Always end with one concrete handoff offer:
     {
       "rank": 1,
       "engagement": "Phoenix",
+      "sheet_id": "<sheet_id>",
       "task": "Vendor API Integration",
       "signals": ["schedule", "blocker", "owner_gap"],
       "signal_count": 3,
+      "tier": "HIGH_RISK",
       "due_date": "2026-04-22",
       "status": "Blocked",
       "owner": null,
@@ -101,6 +106,8 @@ Always end with one concrete handoff offer:
     "owner_gap_count": 2
   }
 }
+Tier is derived from signal_count: 3 = HIGH_RISK, 2 = AT_RISK, 1 = WATCH.
+Per-sheet breakdown is derivable from risk_items — filter by sheet_id.
 ```
 
 `standup-prep` consumes `risk_items` directly — no rescan needed.
