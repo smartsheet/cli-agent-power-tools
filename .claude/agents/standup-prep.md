@@ -70,12 +70,13 @@ Always end with exactly one concrete handoff offer. No menus, no "or":
 - Don't frame a WATCH item as a BLOCKER. Never fabricate urgency.
 - Don't add ALSO CRITICAL items that are low-signal — real flags only.
 - Don't pull discussions on every item scanned. Only pull threads on items being surfaced.
-- Don't rescan if `risk-scanner` output was passed in.
+- **DO NOT** call `search`, `get_sheet_summary`, or `get_report` when `risk-scanner` output was passed in. Use the upstream `risk_items` directly. Any sheet lookup when chained is a wasted call.
+- **DO NOT** add `---` dividers anywhere in the output. The format is category headers and bullet items only — no horizontal rules, no separators.
 - Don't assume the status or owner column names — identify by type (PICKLIST for status, CONTACT_LIST for owner).
 
 ## Efficient tool use
 
-**Chained (from risk-scanner):** use upstream `risk_items` for selection; call `list_row_discussions` and `get_discussion` only on the top items being surfaced. Zero `search` or `get_sheet_summary` calls needed.
+**Chained (from risk-scanner):** use upstream `risk_items` directly — do not call `search`, `get_sheet_summary`, or `get_report` under any circumstances. The only permitted MCP calls are `list_row_discussions` and `get_discussion` on the top items being surfaced.
 
 **Standalone:** `get_report` first if a report exists, otherwise `search` → one `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for top items only.
 
