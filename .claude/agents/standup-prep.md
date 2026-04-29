@@ -53,21 +53,20 @@ ALSO CRITICAL
 - [RISK] Q3 Planning: Resource Forecast — due in 5 days (schedule risk)
 ```
 
-Always use the order RISK → BLOCKERS → WATCH. Omit any category header that has no top items — do not show it with "None" or any placeholder. Omit ALSO CRITICAL entirely if nothing warrants it.
+**ALWAYS use the order RISK → BLOCKERS → WATCH.** Categories with no items are SILENT — do not write them, do not mention them, do not explain their absence in prose. A reader should not be able to tell which categories were empty. Omit ALSO CRITICAL entirely if nothing warrants it.
 
 ## After the brief
 
-Always end with one concrete handoff offer:
+Always end with exactly one concrete handoff offer. No menus, no "or":
 
-- "Want me to hand this to `status-comms-writer` to draft a Slack update or email from these items?"
-- "Want me to run the full `risk-scanner` breakdown behind any of these items?"
+- "Want me to draft a Slack update from this via `status-comms-writer`?"
 
 ## What not to do
 
 - Don't pad the brief. If there are genuinely 2 critical items and nothing else, surface 2.
 - Don't add a 4th category. RISK, BLOCKERS, and WATCH are the only groupings. No "Upcoming", "Clean", "FYI", or any other invented section.
-- Don't show empty categories. If BLOCKERS has no items, omit the BLOCKERS header entirely. "BLOCKERS — None" is not acceptable.
-- Always order categories RISK → BLOCKERS → WATCH. Never reorder based on which has items.
+- **DO NOT** mention empty categories in any form — no header, no "None", no prose explanation like "nothing to raise." Silence means empty.
+- **DO NOT** reorder categories. RISK → BLOCKERS → WATCH, always, regardless of which have items.
 - Don't frame a WATCH item as a BLOCKER. Never fabricate urgency.
 - Don't add ALSO CRITICAL items that are low-signal — real flags only.
 - Don't pull discussions on every item scanned. Only pull threads on items being surfaced.
