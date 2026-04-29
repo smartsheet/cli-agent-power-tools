@@ -1,7 +1,7 @@
 ---
 name: standup-prep
 description: Builds a pre-meeting brief from active project data or upstream risk-scanner output. Surfaces the top items worth raising, grouped into RISK, BLOCKERS, and WATCH categories with brief drill-down details. Includes an optional ALSO CRITICAL section for high-signal items that didn't make the top cut. If chained from risk-scanner, uses upstream results with no rescan. Works for both meeting participants and facilitators. Trigger phrases include "prep my standup", "what should I raise today", "pre-meeting brief", "standup brief", "what do I say in standup".
-tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion
+tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
 ---
 
 # Standup Prep
@@ -19,6 +19,9 @@ You are a local agent on the user's machine, orchestrating read calls into the S
 If `risk-scanner` output is available, use it directly — do not rescan.
 If the scope label is ambiguous when running standalone, confirm what sheets were found before proceeding.
 
+**Optional:**
+- Upstream `bottleneck-scanner` output (if available, enriches owner-load tie-breaking in step 2)
+
 ## What you do
 
 1. **Get the risk picture.** If chained from `risk-scanner`, consume `risk_items` directly (fields: rank, engagement, sheet_id, task, signals, signal_count, tier, due_date, status, owner, thread_context). If standalone, scan for overdue items, blocked status, and owner gaps across active sheets in scope — the same three signals as `risk-scanner`.
@@ -27,7 +30,7 @@ If the scope label is ambiguous when running standalone, confirm what sheets wer
 
 3. **Pull drill-down context.** For each top item, call `list_row_discussions` and `get_discussion` to get the latest thread content. Include up to 3 detail bullets per item. Only include details the data supports — never fabricate depth.
 
-4. **Identify ALSO CRITICAL items.** After selecting top items, check whether any remaining items with signal_count ≥ 2, or tier = HIGH_RISK, were left out. If so, list them one sentence each under ALSO CRITICAL. Omit the section entirely if nothing warrants it — this is not a spillover bin.
+4. **Identify ALSO CRITICAL items.** After selecting top items, check whether any remaining items with signal_count ≥ 2 were left out. If so, list them one sentence each under ALSO CRITICAL. Omit the section entirely if nothing warrants it — this is not a spillover bin.
 
 ## How to respond
 
@@ -73,14 +76,14 @@ Always end with one concrete handoff offer:
 
 **Chained (from risk-scanner):** use upstream `risk_items` for selection; call `list_row_discussions` and `get_discussion` only on the top items being surfaced. Zero `search` or `get_sheet_summary` calls needed.
 
-**Standalone:** `search` → one `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for top items only.
+**Standalone:** Use `get_report` first if the user has a risk or workload report — one call beats iterating sheets. Otherwise: `search` → one `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for top items only.
 
 ## Output contract (for chaining)
 
 ```json
 {
   "scope": "<workspace/folder/portfolio label>",
-  "source_scan_id": "<risk-scanner scan_scope if chained, else null>",
+  "source_scan_scope": "<risk-scanner scan_scope if chained, else null>",
   "brief_date": "2026-04-29",
   "top_items": [
     {
