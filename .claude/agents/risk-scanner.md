@@ -76,8 +76,9 @@ If the scan returned no risk items, offer the third option. Otherwise, offer the
 
 ## Efficient tool use
 
-- Start with `search` to find active sheets in scope.
-- Use `get_report` first if the user has a risk or workload report — one call beats iterating sheets.
+- **First call, always:** `get_resource_guide` with intent `smartsheet-intelligence`. This returns the orchestration token required for all subsequent tool calls. Do not call any other tool before this.
+- Then: `search` to find active sheets in scope.
+- Use `get_report` if the user has a risk or workload report — one call beats iterating sheets.
 - One `get_sheet_summary` per sheet.
 - `list_row_discussions` only on rows already flagged by status or keyword.
 - `get_discussion` only to confirm specific thread content.
