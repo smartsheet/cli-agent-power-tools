@@ -1,14 +1,14 @@
 # CLI Agent Power Tools for Smartsheet
 
-Three free, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
+Six free, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
 
-**Find the bottleneck. Reassign the work. Clone the engagement.** All from your terminal, all using the free Smartsheet MCP tools, all installable in sixty seconds.
+**Find the bottleneck. Reassign the work. Clone the engagement. Scan for risk. Prep your standup. Draft the update.** All from your terminal, all using the free Smartsheet MCP tools, all installable in sixty seconds.
 
 ---
 
 ## What this is
 
-A starter pack of three local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
+Six local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
 
 | Stage | Power Tool | The prompt | What it replaces |
 |---|---|---|---|
@@ -23,13 +23,15 @@ These aren't just prompts. Each Power Tool is a **local agent** on your machine 
 
 ---
 
-## Why these three, in this order
+## Why these six, in this order
 
-The adoption arc that actually works is **Read → Write → Create.**
+Two arcs, one philosophy.
 
-Start with the question you'd be embarrassed to ask a human — read-only, nothing changes, you just want to know. Move to the change you used to do by hand — previewed, confirmed, batched. End at the creation task you're tired of doing at the start of every engagement.
+**Arc 1: Read → Write → Create** is the trust-building sequence. Start with the question you'd be embarrassed to ask a human — read-only, nothing changes, you just want to know. Move to the change you used to do by hand — previewed, confirmed, batched. End at the creation task you're tired of doing at the start of every engagement.
 
-Most teams try to lead with the most impressive demo. Most teams burn out on AI adoption because the impressive demo was a write operation that made a mistake in week two. This pack is ordered the way real trust gets built.
+**Arc 2: Scan → Brief → Draft** is the daily rhythm. Run it every morning. `risk-scanner` tells you what's at risk before someone else finds out in a meeting. `standup-prep` turns that into the three things worth raising. `status-comms-writer` turns that into the message you actually send.
+
+Most teams try to lead with the most impressive demo. Most teams burn out on AI adoption because the impressive demo was a write operation that made a mistake in week two. These arcs are ordered the way real trust gets built — start with reads, earn writes, then make it a habit.
 
 ---
 
