@@ -15,6 +15,9 @@ A starter pack of three local agents for [Claude Code](https://docs.claude.com/e
 | **READ** | `bottleneck-scanner` | *"Who's the bottleneck across my active projects?"* | ~45 minutes of opening sheets, counting tasks by owner, cross-checking thread context |
 | **WRITE** | `reassignment-helper` | *"Reassign everything from Alex to Jordan."* | ~30 minutes of filtering each sheet, clicking each row, checking access |
 | **CREATE** | `engagement-cloner` | *"Clone this project sheet for a new engagement."* | ~60 minutes of finding a template, copying, clearing data, renaming, re-sharing |
+| **SCAN** | `risk-scanner` | *"What's at risk across my active projects?"* | ~20 minutes of manually checking due dates, blocked rows, and unassigned tasks |
+| **BRIEF** | `standup-prep` | *"Prep my standup."* | ~15 minutes of pulling up sheets before a meeting to remember what to say |
+| **DRAFT** | `status-comms-writer` | *"Draft a Slack update from this risk scan."* | ~20 minutes of translating project data into a message someone else will actually read |
 
 These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against our 42 production MCP tools, all within your existing Smartsheet permissions. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
 
@@ -85,7 +88,10 @@ cli-agent-power-tools/
 │   └── agents/
 │       ├── bottleneck-scanner.md       ← READ
 │       ├── reassignment-helper.md      ← WRITE
-│       └── engagement-cloner.md        ← CREATE
+│       ├── engagement-cloner.md        ← CREATE
+│       ├── risk-scanner.md             ← SCAN
+│       ├── standup-prep.md             ← BRIEF
+│       └── status-comms-writer.md      ← DRAFT
 ├── .mcp.json                           # Shared team MCP config
 ├── LICENSE                             # MIT
 ├── CONTRIBUTING.md                     # How to submit new Power Tools
@@ -101,7 +107,7 @@ One git pull gets your whole team the same setup.
 
 This is v1. If these find their people, we'll ship expansion packs:
 
-- **Daily Cadence pack** — `risk-scanner`, `standup-prep`, `status-comms-writer`. For teams that want AI running the daily rhythm, not just the portfolio-level work.
+- **Daily Cadence pack** — shipped in v1.1. `risk-scanner`, `standup-prep`, `status-comms-writer` are live.
 - **Governance pack** — `data-quality-auditor`, `dropdown-standardizer`, `stale-cleanup`, `permission-sweep`. For the PMO that owns sheet hygiene at scale.
 - **Setup pack** — `workspace-organizer`, `template-converter`, `starter-sharer`. For the first 30 days of a new team or customer onboarding.
 
