@@ -29,7 +29,7 @@ Two arcs, one philosophy.
 
 **Arc 1: Read → Write → Create** is the trust-building sequence. Start with the question you'd be embarrassed to ask a human — read-only, nothing changes, you just want to know. Move to the change you used to do by hand — previewed, confirmed, batched. End at the creation task you're tired of doing at the start of every engagement.
 
-**Arc 2: Scan → Brief → Draft** is the daily rhythm. Run it every morning. `risk-scanner` tells you what's at risk before someone else finds out in a meeting. `standup-prep` turns that into the three things worth raising. `status-comms-writer` turns that into the message you actually send.
+**Arc 2: Scan → Brief → Draft** is the daily rhythm. Knowing what's at risk informs what's worth raising. Knowing what's worth raising informs what to communicate. Each stage narrows the signal so the next stage doesn't have to.
 
 Most teams try to lead with the most impressive demo. Most teams burn out on AI adoption because the impressive demo was a write operation that made a mistake in week two. These arcs are ordered the way real trust gets built — start with reads, earn writes, then make it a habit.
 
