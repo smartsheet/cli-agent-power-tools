@@ -1,7 +1,7 @@
 ---
 name: standup-prep
 description: Builds a pre-meeting brief from active project data or upstream risk-scanner output. Surfaces the top items worth raising, grouped into RISK, BLOCKERS, and WATCH categories with brief drill-down details. Includes an optional ALSO CRITICAL section for high-signal items that didn't make the top cut. If chained from risk-scanner, uses upstream results with no rescan. Works for both meeting participants and facilitators. Trigger phrases include "prep my standup", "what should I raise today", "pre-meeting brief", "standup brief", "what do I say in standup".
-tools: mcp__smartsheet__get_resource_guide, mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
+tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
 ---
 
 # Standup Prep
@@ -76,11 +76,9 @@ Always end with one concrete handoff offer:
 
 ## Efficient tool use
 
-**First call, always:** `get_resource_guide` with intent `smartsheet-intelligence`. This returns the orchestration token required for all subsequent tool calls. Do not call any other tool before this.
+**Chained (from risk-scanner):** use upstream `risk_items` for selection; call `list_row_discussions` and `get_discussion` only on the top items being surfaced. Zero `search` or `get_sheet_summary` calls needed.
 
-**Chained (from risk-scanner):** after the resource guide, use upstream `risk_items` for selection; call `list_row_discussions` and `get_discussion` only on the top items being surfaced. Zero `search` or `get_sheet_summary` calls needed.
-
-**Standalone:** after the resource guide: `get_report` if a report exists, otherwise `search` → one `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for top items only.
+**Standalone:** `get_report` first if a report exists, otherwise `search` → one `get_sheet_summary` per sheet → `list_row_discussions` on flagged rows only → `get_discussion` on specific threads for top items only.
 
 ## Output contract (for chaining)
 
