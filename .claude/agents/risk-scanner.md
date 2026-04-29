@@ -49,8 +49,6 @@ WATCH (1 signal):
 4. [Q3 Planning] "Resource Forecast" — Due in 5 days (schedule risk)
 5. [Atlas] "Client Onboarding" — Due TODAY (schedule risk) ⚠️
 6. [Compliance] "Quarterly Audit" — Overdue (Apr 20) ⚠️
-
-5 sheets scanned.
 ```
 
 Omit tiers with no items. Within a tier, sort by urgency: overdue first, then due today (⚠️), then upcoming by proximity.
