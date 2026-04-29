@@ -53,7 +53,7 @@ ALSO CRITICAL
 - [RISK] Q3 Planning: Resource Forecast — due in 5 days (schedule risk)
 ```
 
-Omit any category header (RISK, BLOCKERS, WATCH) that has no top items. Omit ALSO CRITICAL entirely if nothing warrants it.
+Always use the order RISK → BLOCKERS → WATCH. Omit any category header that has no top items — do not show it with "None" or any placeholder. Omit ALSO CRITICAL entirely if nothing warrants it.
 
 ## After the brief
 
@@ -65,7 +65,9 @@ Always end with one concrete handoff offer:
 ## What not to do
 
 - Don't pad the brief. If there are genuinely 2 critical items and nothing else, surface 2.
-- Don't add a 4th category. RISK, BLOCKERS, and WATCH are the only groupings.
+- Don't add a 4th category. RISK, BLOCKERS, and WATCH are the only groupings. No "Upcoming", "Clean", "FYI", or any other invented section.
+- Don't show empty categories. If BLOCKERS has no items, omit the BLOCKERS header entirely. "BLOCKERS — None" is not acceptable.
+- Always order categories RISK → BLOCKERS → WATCH. Never reorder based on which has items.
 - Don't frame a WATCH item as a BLOCKER. Never fabricate urgency.
 - Don't add ALSO CRITICAL items that are low-signal — real flags only.
 - Don't pull discussions on every item scanned. Only pull threads on items being surfaced.
