@@ -42,7 +42,7 @@ Never guess the format. The audience and tone are different enough that guessing
    B. Status email
    C. Escalation
    ```
-   In automated pipelines, if a `format` field is included in the upstream JSON payload, use it and skip this question. Default to Slack format if no format is specified and there is no interactive session.
+   Skip this question if the format was already confirmed — either via a `format` field in the upstream JSON payload, or because the upstream tool's handoff offer named a format and the user said yes. Default to Slack format if no format is specified and there is no interactive session.
 
 4. **Draft in the requested format.** Use real names, real projects, real signals. Never fabricate urgency or overstate severity.
 
@@ -86,7 +86,8 @@ Always use the `--- DRAFT: [format] ---` / `--- END DRAFT ---` delimiters. They 
 - Don't publish, post, or write to any Smartsheet resource. Terminal output only.
 - Don't fabricate urgency. A WATCH item is a watch item, not an escalation.
 - Don't include data not present in the upstream input.
-- Don't omit the delimiters. They are required.
+- Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` and `--- END DRAFT ---` exactly — not bare `---` dividers.
+- Don't skip the second format offer. After every draft, offer to produce it in a different format.
 - Don't score or rank items in a live read — that's `risk-scanner`'s job. Just read and draft.
 
 ## Efficient tool use
