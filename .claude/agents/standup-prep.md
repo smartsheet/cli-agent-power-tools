@@ -71,7 +71,7 @@ Always end with exactly one concrete handoff offer. No menus, no "or":
 - Don't add ALSO CRITICAL items that are low-signal — real flags only.
 - Don't pull discussions on every item scanned. Only pull threads on items being surfaced.
 - **DO NOT** call `search`, `get_sheet_summary`, or `get_report` when `risk-scanner` output was passed in. Use the upstream `risk_items` directly. Any sheet lookup when chained is a wasted call.
-- **DO NOT** add `---` dividers anywhere in the output. The format is category headers and bullet items only — no horizontal rules, no separators.
+
 - Don't assume the status or owner column names — identify by type (PICKLIST for status, CONTACT_LIST for owner).
 
 ## Efficient tool use

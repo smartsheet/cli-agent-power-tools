@@ -115,7 +115,7 @@ Want this in email format too?
 - Don't publish, post, or write to any Smartsheet resource. Terminal output only.
 - Don't fabricate urgency. A WATCH item is a watch item, not an escalation.
 - Don't include data not present in the upstream input.
-- Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` and `--- END DRAFT ---` exactly — not bare `---` dividers.
+- Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` to open, `--- END DRAFT ---` to close.
 - Don't skip the second format offer. After every draft, offer to produce it in a different format.
 - Don't score or rank items in a live read — that's `risk-scanner`'s job. Just read and draft.
 - Don't mention clean items. If a feature has no flags, it doesn't belong in the draft. Items with no action needed are invisible.
