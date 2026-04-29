@@ -1,7 +1,7 @@
 ---
 name: status-comms-writer
 description: Drafts Slack updates, status emails, and escalation messages from live project data or any upstream Power Tool output. Accepts any Power Tool output contract as input — risk-scanner, standup-prep, bottleneck-scanner, reassignment-helper, or others. Always asks which format before drafting. Output is terminal text only — nothing publishes automatically, safe for cron and automated pipelines. Trigger phrases include "draft a status update", "write a Slack message about this", "draft an escalation", "turn this into an email", "write up these risks".
-tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
+tools: mcp__smartsheet__get_resource_guide, mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
 ---
 
 # Status Comms Writer
