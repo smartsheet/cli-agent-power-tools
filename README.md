@@ -107,9 +107,8 @@ One git pull gets your whole team the same setup.
 
 ## What's next
 
-This is v1. If these find their people, we'll ship expansion packs:
+This is v1.1. If these find their people, we'll ship expansion packs:
 
-- **Daily Cadence pack** — shipped in v1.1. `risk-scanner`, `standup-prep`, `status-comms-writer` are live.
 - **Governance pack** — `data-quality-auditor`, `dropdown-standardizer`, `stale-cleanup`, `permission-sweep`. For the PMO that owns sheet hygiene at scale.
 - **Setup pack** — `workspace-organizer`, `template-converter`, `starter-sharer`. For the first 30 days of a new team or customer onboarding.
 
