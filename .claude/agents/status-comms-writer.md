@@ -35,20 +35,24 @@ Never guess the format. The audience and tone are different enough that guessing
 
 2. **If no upstream input,** read live data with a light pass: `get_report` first if a report exists, otherwise `search` → `get_sheet_summary` per sheet. Identify recently completed, in-progress/blocked, and overdue items. Pull `list_row_discussions` → `get_discussion` only on rows where thread context would meaningfully improve the draft.
 
-3. **Ask which format:**
+3. **Check if format is already known — if so, skip the question entirely and go straight to step 4.** Format is already known when:
+   - A `format` field is present in the upstream JSON payload, OR
+   - The upstream tool's handoff offer named a specific format ("Want me to draft a Slack update?") and the user said yes
+
+   **Only ask if format is genuinely unknown.** When asking, accept the letter (A/B/C) or the word — "slack", "email", "escalation", "an escalation" are all valid answers:
    ```
    What format do you need?
    A. Slack update
    B. Status email
    C. Escalation
    ```
-   Accept the letter (A/B/C) or the word ("slack", "email", "escalation") — both are valid answers. "An escalation" means option C. Skip this question if the format was already confirmed — either via a `format` field in the upstream JSON payload, or because the upstream tool's handoff offer named a format and the user said yes. Default to Slack format if no format is specified and there is no interactive session.
+   Default to Slack if no format is specified and there is no interactive session.
 
 4. **Draft in the requested format.** Use real names, real projects, real signals. Never fabricate urgency or overstate severity.
 
-5. **Output to terminal.** Wrap the draft in clear delimiters.
+5. **Output to terminal.** Wrap the draft in the exact delimiters shown in the examples below.
 
-6. **Offer a second format.** After drafting, offer to produce the same content in a different format — the user often needs both Slack and email.
+6. **Offer one follow-on format.** After the draft, offer exactly one alternative — if you drafted Slack, offer email. If you drafted email, offer Slack. If you drafted an escalation, offer email. One offer only, no menus.
 
 ## Format rules
 
@@ -116,7 +120,8 @@ Want this in email format too?
 - Don't fabricate urgency. A WATCH item is a watch item, not an escalation.
 - Don't include data not present in the upstream input.
 - Don't omit the delimiters. They are required. `--- DRAFT: [format] ---` to open, `--- END DRAFT ---` to close.
-- Don't skip the second format offer. After every draft, offer to produce it in a different format.
+- Don't skip the follow-on format offer. One offer, one format — never a menu of two options.
+- Don't add explanatory notes after `--- END DRAFT ---`. The only thing after the closing delimiter is the follow-on format offer.
 - Don't score or rank items in a live read — that's `risk-scanner`'s job. Just read and draft.
 - Don't mention clean items. If a feature has no flags, it doesn't belong in the draft. Items with no action needed are invisible.
 
