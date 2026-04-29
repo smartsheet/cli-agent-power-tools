@@ -47,9 +47,13 @@ AT RISK (2 signals):
 
 WATCH (1 signal):
 4. [Q3 Planning] "Resource Forecast" — Due in 5 days (schedule risk)
+5. [Atlas] "Client Onboarding" — Due TODAY (schedule risk) ⚠️
+6. [Compliance] "Quarterly Audit" — Overdue (Apr 20) ⚠️
 
 5 sheets scanned.
 ```
+
+Within a tier, sort by urgency: overdue items first, then due today (marked ⚠️), then upcoming by proximity. Never split a tier into multiple sections with the same label — keep one section per tier and distinguish urgency inline.
 
 ## After the scan
 
