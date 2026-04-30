@@ -12,11 +12,11 @@ A starter pack of three local agents for [Claude Code](https://docs.claude.com/e
 
 | Stage | Power Tool | The prompt | What it typically replaces |
 |---|---|---|---|
-| **READ** | `bottleneck-scanner` | *"Who's the bottleneck across my active projects?"* | ~45 minutes of opening sheets, counting tasks by owner, cross-checking thread context |
-| **WRITE** | `reassignment-helper` | *"Reassign everything from Alex to Jordan."* | ~30 minutes of filtering each sheet, clicking each row, checking access |
-| **CREATE** | `engagement-cloner` | *"Clone this project sheet for a new engagement."* | ~60 minutes of finding a template, copying, clearing data, renaming, re-sharing |
+| **READ** | `bottleneck-scanner` | *"Who's the bottleneck across my active projects?"* | Opening sheets, counting tasks by owner, cross-checking thread context |
+| **WRITE** | `reassignment-helper` | *"Reassign everything from Alex to Jordan."* | Filtering each sheet, clicking each row, checking access |
+| **CREATE** | `engagement-cloner` | *"Clone this project sheet for a new engagement."* | Finding a template, copying, clearing data, renaming, re-sharing |
 
-These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against our 42 production MCP tools, all operating within your Smartsheet session. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
+These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against Smartsheet's production MCP tools, all operating within your Smartsheet session. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
 
 ---
 
@@ -101,9 +101,9 @@ One git pull gets your whole team the same setup.
 
 This is v1. If these find their people, we'll ship new expansion packs. Here's what we're thinking about:
 
-- **Daily Cadence pack** — `risk-scanner`, `standup-prep`, `status-comms-writer`. For teams that want AI running the daily rhythm, not just the portfolio-level work.
-- **Governance pack** — `data-quality-auditor`, `dropdown-standardizer`, `stale-cleanup`, `permission-sweep`. For the PMO that owns sheet hygiene at scale.
-- **Setup pack** — `workspace-organizer`, `template-converter`, `starter-sharer`. For the first 30 days of a new team or customer onboarding.
+- **Daily Cadence pack** — daily risk sweeps, pre-meeting briefs, and status drafts. For teams that want AI running the daily rhythm, not just the portfolio-level work.
+- **Governance pack** — sheet hygiene at scale: null values, dropdown drift, staleness, permission audits.
+- **Setup pack** — first 30 days of a new team or customer onboarding: workspace setup, templating, and sharing.
 
 Pull requests welcome. See `CONTRIBUTING.md`.
 

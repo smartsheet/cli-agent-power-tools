@@ -67,21 +67,11 @@ Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagem
 
 ## What we're looking for
 
-**Daily Cadence pack** (in progress):
-- `risk-scanner` — daily risk sweep across active projects
-- `standup-prep` — pre-meeting brief, 3 items worth raising
-- `status-comms-writer` — drafts emails, Slack updates, escalations from live data
+**Governance hygiene** (open):
+Tools for PMOs that own sheet quality at scale — areas like null value detection, dropdown drift, staleness flagging, and permission auditing. If you're building in this space, open an issue to discuss scope.
 
-**Governance pack** (open):
-- `data-quality-auditor` — null values, inconsistent dropdowns, orphaned rows
-- `dropdown-standardizer` — fixes "Done" / "Complete" / "Finished" drift
-- `stale-cleanup` — flags active-status items with 30+ day staleness
-- `permission-sweep` — audits who has access to what, flags over-sharing
-
-**Setup pack** (open):
-- `workspace-organizer` — bulk workspace/folder restructuring
-- `template-converter` — turns working sheets into reusable templates
-- `starter-sharer` — bulk-shares new sheets to the right groups on creation
+**Workspace setup** (open):
+Tools for the first 30 days of a new team or customer onboarding — areas like workspace organization, template creation, and bulk sharing. If you're building in this space, open an issue to discuss scope.
 
 If you're building something that doesn't fit any of these, open an issue first so we can talk about where it might slot in.
 
