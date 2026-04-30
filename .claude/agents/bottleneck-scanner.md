@@ -1,7 +1,7 @@
 ---
 name: bottleneck-scanner
 description: Scans active projects to find overloaded people, cross-references priority and due dates, reads discussion threads for context, and returns a ranked list of who's overloaded and what can be redistributed. Read-only — nothing writes. Use for the Monday morning overload scan or any time you need to know who's underwater before you pile on more work. Trigger phrases include "who's the bottleneck", "who's overloaded", "workload scan", "who has too much", "find the bottleneck".
-tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
+tools: mcp__smartsheet__get_resource_guide, mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__list_row_discussions, mcp__smartsheet__get_discussion, mcp__smartsheet__get_report
 ---
 
 # Bottleneck Scanner

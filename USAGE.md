@@ -188,19 +188,46 @@ Three principles worth internalizing before you build a chain:
 
 ---
 
-## Quick reference — the three Power Tools
+## Quick reference — Power Tools
 
 | Power Tool | Stage | Invocation style | Best as a task | Chains to |
 |---|---|---|---|---|
 | `bottleneck-scanner` | READ | Monday morning, before portfolio review | Cron → Slack | Feeds `reassignment-helper` |
 | `reassignment-helper` | WRITE | When someone rolls off, on leave, re-slotted | Dry-run on cron, live on demand | Feeds `engagement-cloner` |
 | `engagement-cloner` | CREATE | Engagement kickoff, new wave starts | On-demand only (create ops rarely scheduled) | Usually the last stage |
+| `risk-scanner` | SCAN | Daily risk sweep, pre-meeting check | Daily cron → terminal | Feeds `standup-prep` |
+| `standup-prep` | BRIEF | Before any team standup or review | On-demand or morning cron | Feeds `status-comms-writer` |
+| `status-comms-writer` | DRAFT | After any scan or reassignment, before comms | On-demand only | Last stage (universal) |
 
 ---
 
+## Daily Cadence chain
+
+The three Daily Cadence tools compose into a morning briefing pipeline. Each stage feeds the next — but only if you approve.
+
+```
+┌──────────────────┐  gate 1  ┌──────────────────┐  gate 2  ┌────────────────────────┐
+│  risk-scanner    │ ──────>  │  standup-prep     │ ──────>  │  status-comms-writer   │
+│  (SCAN — score)  │ approve? │  (BRIEF — raise)  │ approve? │  (DRAFT — communicate) │
+└──────────────────┘          └──────────────────┘          └────────────────────────┘
+```
+
+**Automated morning run:**
+
+```bash
+# Daily 7:45am — scan, brief, draft, pipe to terminal (you send manually)
+45 7 * * 1-5  cd ~/my-projects \
+  && SCAN=$(claude -p "Use risk-scanner on workspace Healthcare" --output-format json) \
+  && BRIEF=$(claude -p "Use standup-prep with prior context: $SCAN" --output-format json) \
+  && claude -p "Use status-comms-writer with prior context: $BRIEF. Draft a Slack update."
+```
+
+**`status-comms-writer` is the universal last stage.** It accepts output from any Power Tool — not just Daily Cadence tools. After a reassignment, hand it to `status-comms-writer` to draft the team announcement. After a bottleneck scan, hand it off to draft the escalation. The output contract pattern is the same regardless of which tool fed it.
+
 ## Where to go next
 
-- **New to the pack?** Run `bottleneck-scanner` interactively on a practice or workspace you know well. See what it surfaces.
-- **Ready to automate?** Schedule `bottleneck-scanner` as a weekly cron. Low risk, high signal, builds habit.
-- **Building a chain?** Start with the Read → Write arc. Add Create once the first two are muscle memory.
+- **New to the pack?** Run `bottleneck-scanner` interactively on a workspace you know well. See what it surfaces.
+- **Want the daily rhythm?** Run `risk-scanner` each morning on your active workspace. Add `standup-prep` once that's a habit.
+- **Ready to automate?** Schedule `risk-scanner` as a daily cron. Low risk, high signal, zero clicking.
+- **Building a chain?** Start with the Read → Write arc. Add Daily Cadence once the first two are muscle memory.
 - **Contributing?** See `CONTRIBUTING.md`. Keep new Power Tools under 300 lines, scoped, and opinionated.

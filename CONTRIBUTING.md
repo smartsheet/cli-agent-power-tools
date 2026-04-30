@@ -67,11 +67,6 @@ Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagem
 
 ## What we're looking for
 
-**Daily Cadence pack** (in progress):
-- `risk-scanner` — daily risk sweep across active projects
-- `standup-prep` — pre-meeting brief, 3 items worth raising
-- `status-comms-writer` — drafts emails, Slack updates, escalations from live data
-
 **Governance pack** (open):
 - `data-quality-auditor` — null values, inconsistent dropdowns, orphaned rows
 - `dropdown-standardizer` — fixes "Done" / "Complete" / "Finished" drift

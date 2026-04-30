@@ -1,32 +1,37 @@
 # CLI Agent Power Tools for Smartsheet
 
-Three free, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
+Six free, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
 
-**Find the bottleneck. Reassign the work. Clone the engagement.** All from your terminal, all using the free Smartsheet MCP tools, all installable in sixty seconds.
+**Find the bottleneck. Reassign the work. Clone the engagement. Scan for risk. Prep your standup. Draft the update.** All from your terminal, all using the free Smartsheet MCP tools, all installable in sixty seconds.
 
 ---
 
 ## What this is
 
-A starter pack of three local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
+Six local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
 
 | Stage | Power Tool | The prompt | What it replaces |
 |---|---|---|---|
 | **READ** | `bottleneck-scanner` | *"Who's the bottleneck across my active projects?"* | ~45 minutes of opening sheets, counting tasks by owner, cross-checking thread context |
 | **WRITE** | `reassignment-helper` | *"Reassign everything from Alex to Jordan."* | ~30 minutes of filtering each sheet, clicking each row, checking access |
 | **CREATE** | `engagement-cloner` | *"Clone this project sheet for a new engagement."* | ~60 minutes of finding a template, copying, clearing data, renaming, re-sharing |
+| **SCAN** | `risk-scanner` | *"What's at risk across my active projects?"* | ~20 minutes of manually checking due dates, blocked rows, and unassigned tasks |
+| **BRIEF** | `standup-prep` | *"Prep my standup."* | ~15 minutes of pulling up sheets before a meeting to remember what to say |
+| **DRAFT** | `status-comms-writer` | *"Draft a Slack update from this risk scan."* | ~20 minutes of translating project data into a message someone else will actually read |
 
 These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against our 42 production MCP tools, all within your existing Smartsheet permissions. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
 
 ---
 
-## Why these three, in this order
+## Why these six, in this order
 
-The adoption arc that actually works is **Read → Write → Create.**
+Two arcs, one philosophy.
 
-Start with the question you'd be embarrassed to ask a human — read-only, nothing changes, you just want to know. Move to the change you used to do by hand — previewed, confirmed, batched. End at the creation task you're tired of doing at the start of every engagement.
+**Arc 1: Read → Write → Create** is the trust-building sequence. Start with the question you'd be embarrassed to ask a human — read-only, nothing changes, you just want to know. Move to the change you used to do by hand — previewed, confirmed, batched. End at the creation task you're tired of doing at the start of every engagement.
 
-Most teams try to lead with the most impressive demo. Most teams burn out on AI adoption because the impressive demo was a write operation that made a mistake in week two. This pack is ordered the way real trust gets built.
+**Arc 2: Scan → Brief → Draft** is the daily rhythm. Knowing what's at risk informs what's worth raising. Knowing what's worth raising informs what to communicate. Each stage narrows the signal so the next stage doesn't have to.
+
+Most teams try to lead with the most impressive demo. Most teams burn out on AI adoption because the impressive demo was a write operation that made a mistake in week two. These arcs are ordered the way real trust gets built — start with reads, earn writes, then make it a habit.
 
 ---
 
@@ -85,7 +90,10 @@ cli-agent-power-tools/
 │   └── agents/
 │       ├── bottleneck-scanner.md       ← READ
 │       ├── reassignment-helper.md      ← WRITE
-│       └── engagement-cloner.md        ← CREATE
+│       ├── engagement-cloner.md        ← CREATE
+│       ├── risk-scanner.md             ← SCAN
+│       ├── standup-prep.md             ← BRIEF
+│       └── status-comms-writer.md      ← DRAFT
 ├── .mcp.json                           # Shared team MCP config
 ├── LICENSE                             # MIT
 ├── CONTRIBUTING.md                     # How to submit new Power Tools
@@ -99,9 +107,8 @@ One git pull gets your whole team the same setup.
 
 ## What's next
 
-This is v1. If these find their people, we'll ship expansion packs:
+This is v1.1. If these find their people, we'll ship expansion packs:
 
-- **Daily Cadence pack** — `risk-scanner`, `standup-prep`, `status-comms-writer`. For teams that want AI running the daily rhythm, not just the portfolio-level work.
 - **Governance pack** — `data-quality-auditor`, `dropdown-standardizer`, `stale-cleanup`, `permission-sweep`. For the PMO that owns sheet hygiene at scale.
 - **Setup pack** — `workspace-organizer`, `template-converter`, `starter-sharer`. For the first 30 days of a new team or customer onboarding.
 

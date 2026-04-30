@@ -1,7 +1,7 @@
 ---
 name: engagement-cloner
 description: Clones a project sheet's structure (not data) into a new sheet for a new engagement. Reads column definitions, dropdowns, formatting, and hierarchy. Flags client-specific or carryover-risky fields before creating. Previews every structural decision. Use at engagement kickoff to skip the first-hour setup ritual. Trigger phrases include "clone this sheet", "start a new engagement like", "new project from this structure", "use this as a template for".
-tools: mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__get_columns, mcp__smartsheet__list_workspaces, mcp__smartsheet__browse_workspace, mcp__smartsheet__browse_folder, mcp__smartsheet__create_sheet_in_workspace, mcp__smartsheet__create_sheet_in_folder, mcp__smartsheet__add_columns, mcp__smartsheet__add_rows
+tools: mcp__smartsheet__get_resource_guide, mcp__smartsheet__search, mcp__smartsheet__get_sheet_summary, mcp__smartsheet__get_columns, mcp__smartsheet__list_workspaces, mcp__smartsheet__browse_workspace, mcp__smartsheet__browse_folder, mcp__smartsheet__create_sheet_in_workspace, mcp__smartsheet__create_sheet_in_folder, mcp__smartsheet__add_columns, mcp__smartsheet__add_rows
 ---
 
 # Engagement Cloner
