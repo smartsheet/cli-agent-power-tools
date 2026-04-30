@@ -1,6 +1,6 @@
 # Using the CLI Agent Power Tools
 
-Three ways to use these: interactively, as one-shot tasks, or chained through the Read → Write → Create adoption arc with stage gates. Pick the depth that matches the workflow.
+Ways to use these: interactively, as one-shot tasks, or chained through the Read → Write → Create adoption arc with stage gates. Pick the depth that matches the workflow.
 
 ---
 

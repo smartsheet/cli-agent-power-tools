@@ -1,8 +1,8 @@
 # CLI Agent Power Tools for Smartsheet
 
-Three free, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
+Three open-source, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
 
-**Find the bottleneck. Reassign the work. Clone the engagement.** All from your terminal, all using the free Smartsheet MCP tools, all installable in sixty seconds.
+**Find the bottleneck. Reassign the work. Clone the engagement.** All from your terminal, all using the Smartsheet MCP tools, all installable in sixty seconds.
 
 ---
 
@@ -10,13 +10,13 @@ Three free, opinionated Claude Code agents that turn the most common project-man
 
 A starter pack of three local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
 
-| Stage | Power Tool | The prompt | What it replaces |
+| Stage | Power Tool | The prompt | What it typically replaces |
 |---|---|---|---|
 | **READ** | `bottleneck-scanner` | *"Who's the bottleneck across my active projects?"* | ~45 minutes of opening sheets, counting tasks by owner, cross-checking thread context |
 | **WRITE** | `reassignment-helper` | *"Reassign everything from Alex to Jordan."* | ~30 minutes of filtering each sheet, clicking each row, checking access |
 | **CREATE** | `engagement-cloner` | *"Clone this project sheet for a new engagement."* | ~60 minutes of finding a template, copying, clearing data, renaming, re-sharing |
 
-These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against our 42 production MCP tools, all within your existing Smartsheet permissions. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
+These aren't just prompts. Each Power Tool is a **local agent** on your machine that orchestrates deep calls into our platform — reading discussion threads, writing to the work graph, composing against our 42 production MCP tools, all operating within your Smartsheet session. Local intelligence on your terminal, commanding twenty years of Smartsheet behavior.
 
 ---
 
@@ -71,7 +71,7 @@ Worth making this explicit, because the words look similar.
 
 **Smartsheet's platform sub-agents** are the production-grade, credit-bearing intelligence layer inside SmartAssist — Risk Analysis, Dependency Detection, Executive Summary, Resource Optimizer, and others. They run on Smartsheet's infrastructure, use proprietary execution data across 100K+ organizations, and are what customers are paying for when they use the platform's AI features.
 
-**CLI Agent Power Tools** are something different. They're personal prompt configurations that live on your laptop, run in your Claude Code session, and use only the free read/write/create MCP tools our server already exposes publicly. They don't invoke platform sub-agents. They don't carry Smartsheet's proprietary intelligence. They're the "get more out of the MCP tools you already have" toolkit.
+**CLI Agent Power Tools** are something different. They're personal prompt configurations that live on your laptop, run in your Claude Code session, and use only the read/write/create MCP tools our server already exposes publicly. They don't invoke platform sub-agents. They don't carry Smartsheet's proprietary intelligence. They're the "get more out of the MCP tools you already have" toolkit.
 
 Think of it this way: platform sub-agents are the industrial machinery. Power Tools are the sharp hand tools you keep in your desk drawer. Both useful, both Smartsheet-made, different jobs.
 
@@ -99,7 +99,7 @@ One git pull gets your whole team the same setup.
 
 ## What's next
 
-This is v1. If these find their people, we'll ship expansion packs:
+This is v1. If these find their people, we'll ship new expansion packs. Here's what we're thinking about:
 
 - **Daily Cadence pack** — `risk-scanner`, `standup-prep`, `status-comms-writer`. For teams that want AI running the daily rhythm, not just the portfolio-level work.
 - **Governance pack** — `data-quality-auditor`, `dropdown-standardizer`, `stale-cleanup`, `permission-sweep`. For the PMO that owns sheet hygiene at scale.
