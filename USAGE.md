@@ -1,6 +1,6 @@
 # Using the CLI Agent Power Tools
 
-Three ways to use these: interactively, as one-shot tasks, or chained through the Read → Write → Create adoption arc with stage gates. Pick the depth that matches the workflow.
+Ways to use these: interactively, as one-shot tasks, or chained through the Read → Write → Create adoption arc with stage gates. Pick the depth that matches the workflow.
 
 ---
 
@@ -104,7 +104,7 @@ Claude Code hooks fire on session events. Auto-run a bottleneck scan on the firs
 
 **The advanced pattern.** The three Power Tools compose into the Read → Write → Create adoption arc. Each stage's output feeds the next — but only through explicit human approval at each gate.
 
-This is the pattern that lets a PMO scale AI-assisted portfolio operations without ever letting the AI execute a write somebody didn't approve.
+This is the pattern designed so the AI doesn't execute a write without explicit human approval at each gate.
 
 ### The canonical chain
 
@@ -155,7 +155,7 @@ claude -p "Use engagement-cloner to spin up a new sheet for the rebalanced scope
 
 ### Dry-run before any write
 
-When a Power Tool offers to make changes, always preview first. Claude Code's permission system gates writes by default, but an explicit dry-run is belt-and-braces — especially for reassignments that touch many rows.
+When a Power Tool offers to make changes, always preview first. Claude Code's permission system is designed to gate writes by default, but an explicit dry-run is belt-and-braces — especially for reassignments that touch many rows.
 
 ```bash
 claude -p "Use reassignment-helper to move everything from Alex to Jordan.
@@ -168,7 +168,7 @@ Review the plan. If it looks right, approve the execution as a second call that 
 
 Each Power Tool returns output you can validate before using it. Minimum contract:
 
-| Power Tool | Must always return | Halt if missing |
+| Power Tool | Designed to return | Halt if missing |
 |---|---|---|
 | `bottleneck-scanner` | `scanned_sheets`, `overloaded_owners`, `redistribution_candidates` | Yes |
 | `reassignment-helper` | `source`, `target`, `rows_changed`, `write_results`, `permission_issues` | Yes |

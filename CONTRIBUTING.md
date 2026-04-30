@@ -1,6 +1,6 @@
 # Contributing to CLI Agent Power Tools
 
-We want this to grow. PRs are welcome, forks are welcome, derivatives are welcome. Here's the bar for what gets merged.
+We want this to grow. PRs are welcome, forks are welcome, derivatives are welcome. Here's what we're looking for in contributions.
 
 ---
 
@@ -67,6 +67,8 @@ Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagem
 
 ## What we're looking for
 
+Here's what we're thinking about — subject to change, open to contribution:
+
 **Governance pack** (open):
 - `data-quality-auditor` — null values, inconsistent dropdowns, orphaned rows
 - `dropdown-standardizer` — fixes "Done" / "Complete" / "Finished" drift
@@ -78,7 +80,7 @@ Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagem
 - `template-converter` — turns working sheets into reusable templates
 - `starter-sharer` — bulk-shares new sheets to the right groups on creation
 
-If you're building something that doesn't fit any of these, we'll likely accept it if it passes the design principles above — just open an issue first so we can talk about where it slots in.
+If you're building something that doesn't fit any of these, open an issue first so we can talk about where it might slot in.
 
 ---
 
@@ -105,4 +107,4 @@ Be kind. Be specific. Be useful. If your PR comment sounds like something you'd 
 
 ## Questions
 
-Open an issue on the repo, or reach out to the maintainers. We read everything.
+Open an issue on the repo, or reach out to the maintainers. We try to respond to everything.
