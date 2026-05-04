@@ -106,23 +106,11 @@ Block a release if the engagement sheet it depends on has too many overloaded ow
 
 ### Hooks (always-on automation)
 
-Both CLIs support hooks, but they work differently.
-
-**Claude Code** hooks accept natural language instructions and Claude interprets them:
+Both CLIs use the same hook format: PascalCase event names (`SessionStart`, `PreToolUse` / `BeforeTool`, etc.), shell scripts that output JSON, and the same two-level `hooks` structure in `settings.json`.
 
 ```json
-// .claude/settings.json
-{
-  "hooks": {
-    "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
-  }
-}
-```
-
-**Gemini CLI** hooks execute shell scripts that output JSON. Hook event names are PascalCase (`SessionStart`, `BeforeTool`, `AfterTool`, etc.) and each hook must be a script with a `command` field. For the "scan on session start" use case, a `SessionStart` hook can inject context into the session:
-
-```json
-// .gemini/settings.json
+// Claude Code: .claude/settings.json
+// Gemini CLI:  .gemini/settings.json
 {
   "hooks": {
     "SessionStart": [
@@ -130,7 +118,6 @@ Both CLIs support hooks, but they work differently.
         "matcher": "startup",
         "hooks": [
           {
-            "name": "monday-risk-brief",
             "type": "command",
             "command": ".gemini/hooks/monday-scan.sh",
             "timeout": 30000
@@ -142,7 +129,7 @@ Both CLIs support hooks, but they work differently.
 }
 ```
 
-Where `.gemini/hooks/monday-scan.sh` checks the day and outputs a JSON `additionalContext` payload. Note that Gemini hooks run shell scripts — they inject context but cannot directly invoke an agent. For scheduled agent runs, use a cron job (`gemini -p "..."`) rather than a session hook.
+The key difference: **Claude Code supports `type: "agent"` hooks** that can directly invoke a Power Tool. Gemini CLI only supports `type: "command"` — hooks can inject context into the session but cannot invoke an agent. For scheduled agent runs in Gemini CLI, use a cron job (`gemini -p "..."`) rather than a session hook.
 
 ---
 
