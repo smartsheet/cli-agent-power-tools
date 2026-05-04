@@ -26,7 +26,32 @@ Every Power Tool in this repo has to pass these:
 
 ## File shape
 
-Every `.md` file under `.claude/agents/` follows the same skeleton:
+Every Power Tool lives in two places: `.claude/agents/` for Claude Code and `.gemini/agents/` for Gemini CLI. The body content is identical between the two. The only difference is the `tools` field format in the frontmatter:
+
+**Claude Code** (`.claude/agents/`): comma-separated string with double-underscore tool names
+**Gemini CLI** (`.gemini/agents/`): YAML array with single-underscore tool names
+
+```markdown
+# Claude Code frontmatter
+---
+name: your-power-tool-name
+description: One sentence on what it does, one sentence on when to use it, then trigger phrases.
+tools: mcp__smartsheet__<only the tools you need>, mcp__smartsheet__<another tool>
+---
+```
+
+```markdown
+# Gemini CLI frontmatter
+---
+name: your-power-tool-name
+description: One sentence on what it does, one sentence on when to use it, then trigger phrases.
+tools:
+  - mcp_smartsheet_<only the tools you need>
+  - mcp_smartsheet_<another tool>
+---
+```
+
+The shared skeleton below applies to both — write the body once, use it in both files:
 
 ```markdown
 ---
@@ -61,7 +86,7 @@ One opening line on purpose. Reference the Read → Write → Create stage if ap
 <JSON schema example>
 ```
 
-Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagement-cloner.md` as a starting point.
+Copy the shape of `bottleneck-scanner.md`, `reassignment-helper.md`, or `engagement-cloner.md` as a starting point. When you have the body content finalized, create both the `.claude/agents/` and `.gemini/agents/` versions — body identical, frontmatter adapted per the format rules above.
 
 ---
 
@@ -93,6 +118,9 @@ Before you submit:
 - [ ] All MCP tools listed are actually used in the system prompt
 - [ ] Output contract JSON schema is included
 - [ ] Behaviors are opinionated — the agent knows the domain quirks
+- [ ] Both `.claude/agents/` and `.gemini/agents/` files are present
+- [ ] `.gemini/agents/` version uses YAML array `tools` with `mcp_smartsheet_` naming
+- [ ] Body content is identical between both versions
 - [ ] `README.md` tool table updated if this is a new headline Power Tool
 - [ ] `USAGE.md` updated if new chaining patterns are enabled
 - [ ] You tested it against at least one real Smartsheet sheet

@@ -1,6 +1,6 @@
 # CLI Agent Power Tools for Smartsheet
 
-Six open-source, opinionated Claude Code agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through.
+Six open-source, opinionated agents that turn the most common project-manager tasks into a sentence you type instead of an hour you click through. Works on **Claude Code** and **Gemini CLI**.
 
 **Find the bottleneck. Reassign the work. Clone the engagement. Scan for risk. Prep your standup. Draft the update.** All from your terminal, all using the Smartsheet MCP tools, all installable in sixty seconds.
 
@@ -8,7 +8,7 @@ Six open-source, opinionated Claude Code agents that turn the most common projec
 
 ## What this is
 
-Six local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file under `.claude/agents/`. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
+Six local agents for [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) and [Gemini CLI](https://geminicli.com), purpose-built against the [Smartsheet MCP server](https://mcp.smartsheet.com). Each one is a single markdown file — under `.claude/agents/` for Claude Code, `.gemini/agents/` for Gemini CLI. They activate automatically when you ask the right question, and they come pre-loaded with twenty years of Smartsheet behavior baked in.
 
 | Stage | Power Tool | The prompt | What it typically replaces |
 |---|---|---|---|
@@ -38,26 +38,40 @@ Most teams try to lead with the most impressive demo. Most teams burn out on AI 
 ## Quick install
 
 ```bash
-# 1. Install Claude Code
-npm install -g @anthropic-ai/claude-code
-
-# 2. Clone this pack
+# 1. Clone this pack
 git clone https://github.com/smartsheet/cli-agent-power-tools
 cd cli-agent-power-tools
 
-# 3. Get your Smartsheet Personal Access Token
+# 2. Get your Smartsheet Personal Access Token
 # Go to Account > Personal Settings > API Access in Smartsheet to generate one
+```
 
-# 4. Set up Smartsheet MCP connection (choose one option):
+**Claude Code:**
+```bash
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
 
+# Set up Smartsheet MCP connection (choose one option):
 # Option A: Run the automated setup script
 ./smartsheet_mcp_setup.sh
 
 # Option B: Manual setup following Smartsheet's documentation
 # https://developers.smartsheet.com/ai-mcp/smartsheet/install-the-smartsheet-mcp-server/connect-claude-code
 
-# 5. Start Claude Code — Power Tools load automatically from .claude/agents/
+# Start Claude Code — Power Tools load automatically from .claude/agents/
 claude
+```
+
+**Gemini CLI:**
+```bash
+# Install Gemini CLI
+npm install -g @google/gemini-cli
+
+# Set up Smartsheet MCP connection
+./gemini_mcp_setup.sh
+
+# Start Gemini CLI — Power Tools load automatically from .gemini/agents/
+gemini
 ```
 
 Then just ask:
@@ -66,7 +80,7 @@ Then just ask:
 > Who's the bottleneck across my active projects?
 ```
 
-Power Tools route automatically based on what you ask. You can also invoke them explicitly: `use bottleneck-scanner on the Healthcare practice`.
+Power Tools route automatically based on what you ask. You can also invoke them explicitly: `use bottleneck-scanner on the Healthcare practice`. In Gemini CLI, you can also force-invoke with `@bottleneck-scanner`.
 
 ---
 
@@ -94,7 +108,17 @@ cli-agent-power-tools/
 │       ├── risk-scanner.md             ← SCAN
 │       ├── standup-prep.md             ← BRIEF
 │       └── status-comms-writer.md      ← DRAFT
+├── .gemini/
+│   └── agents/
+│       ├── bottleneck-scanner.md       ← READ
+│       ├── reassignment-helper.md      ← WRITE
+│       ├── engagement-cloner.md        ← CREATE
+│       ├── risk-scanner.md             ← SCAN
+│       ├── standup-prep.md             ← BRIEF
+│       └── status-comms-writer.md      ← DRAFT
 ├── .mcp.json                           # Shared team MCP config
+├── smartsheet_mcp_setup.sh             # Claude Code MCP setup
+├── gemini_mcp_setup.sh                 # Gemini CLI MCP setup
 ├── LICENSE                             # MIT
 ├── CONTRIBUTING.md                     # How to submit new Power Tools
 ├── USAGE.md                            # Invocation, task automation, chaining
@@ -130,7 +154,7 @@ The CLI isn't the point. The work graph is the point. Local agents are the mecha
 
 ## A note on the underlying mechanism
 
-For the technically curious: CLI Agent Power Tools are implemented as [Claude Code sub-agents](https://docs.claude.com/en/docs/claude-code/overview) — markdown files with YAML frontmatter under `.claude/agents/`. We call them Power Tools in our copy to keep them clearly distinct from Smartsheet's platform sub-agents, which are a separate product concept. The mechanism is Anthropic's; the domain expertise baked in is ours.
+For the technically curious: CLI Agent Power Tools are implemented as local sub-agents — markdown files with YAML frontmatter that both [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) and [Gemini CLI](https://geminicli.com/docs/core/subagents) support natively. Claude Code loads them from `.claude/agents/`; Gemini CLI loads them from `.gemini/agents/`. One clone, both runtimes. We call them Power Tools in our copy to keep them clearly distinct from Smartsheet's platform sub-agents, which are a separate product concept. The mechanism is Anthropic's and Google's; the domain expertise baked in is ours.
 
 ---
 

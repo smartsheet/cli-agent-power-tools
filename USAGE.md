@@ -6,9 +6,9 @@ Ways to use these: interactively, as one-shot tasks, or chained through the Read
 
 ## 1. Invoking a Power Tool
 
-Once the pack is installed and Claude Code is running, Power Tools activate three ways:
+Once the pack is installed and your CLI is running, Power Tools activate three ways:
 
-**Natural language.** Just ask for what you need. Claude Code reads each Power Tool's `description` field and picks the right one.
+**Natural language.** Just ask for what you need. The CLI reads each Power Tool's `description` field and picks the right one.
 
 ```
 > Who's the bottleneck across my active projects?
@@ -29,7 +29,14 @@ Once the pack is installed and Claude Code is running, Power Tools activate thre
 > Use engagement-cloner with Q2 Phoenix as the template, new name "Q3 Healthcare — Acme"
 ```
 
-**Inside Claude Code's conversation flow.** When the main Claude Code instance delegates to a Power Tool, it runs in its own context with its own restricted tool set. The output comes back summarized into the main conversation.
+**Force-invoke by name (Gemini CLI).** Use the `@` prefix to route directly to a specific agent.
+
+```
+> @bottleneck-scanner scan the Healthcare practice
+> @risk-scanner what's at risk across my active projects?
+```
+
+**Inside the conversation flow.** When the main model delegates to a Power Tool, it runs in its own context with its own restricted tool set. The output comes back summarized into the main conversation.
 
 ---
 
@@ -39,16 +46,21 @@ This is where the CLI earns its keep. Every Power Tool can run unattended.
 
 ### One-shot headless invocation
 
-Use `claude -p` for a non-interactive run.
+Use `-p` for a non-interactive run. Works with both CLIs.
 
 ```bash
+# Claude Code
 claude -p "Use bottleneck-scanner on the Healthcare practice"
+
+# Gemini CLI
+gemini -p "Use bottleneck-scanner on the Healthcare practice"
 ```
 
 Add `--output-format json` when piping into another tool.
 
 ```bash
 claude -p "Use bottleneck-scanner on the Healthcare practice" --output-format json
+gemini -p "Use bottleneck-scanner on the Healthcare practice" --output-format json
 ```
 
 ### Scheduled jobs (cron)
@@ -56,9 +68,14 @@ claude -p "Use bottleneck-scanner on the Healthcare practice" --output-format js
 Run a weekly bottleneck scan, pipe the result into Slack.
 
 ```bash
-# Monday morning overload scan → #pmo-leadership
+# Monday morning overload scan → #pmo-leadership (Claude Code)
 0 8 * * 1  cd ~/my-projects \
   && claude -p "Use bottleneck-scanner on workspace Healthcare practice" \
+  | slack-cli post --channel pmo-leadership
+
+# Monday morning overload scan → #pmo-leadership (Gemini CLI)
+0 8 * * 1  cd ~/my-projects \
+  && gemini -p "Use bottleneck-scanner on workspace Healthcare practice" \
   | slack-cli post --channel pmo-leadership
 ```
 
@@ -89,12 +106,23 @@ Block a release if the engagement sheet it depends on has too many overloaded ow
 
 ### Hooks (always-on automation)
 
-Claude Code hooks fire on session events. Auto-run a bottleneck scan on the first session start of the week.
+Both CLIs support hooks that fire on session events. Auto-run a bottleneck scan on the first session start of the week.
 
 ```json
-// .claude/hooks.json
+// Claude Code: .claude/settings.json
 {
-  "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
+  "hooks": {
+    "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
+  }
+}
+```
+
+```json
+// Gemini CLI: .gemini/settings.json
+{
+  "hooks": {
+    "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
+  }
 }
 ```
 
