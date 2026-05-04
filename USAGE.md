@@ -106,10 +106,12 @@ Block a release if the engagement sheet it depends on has too many overloaded ow
 
 ### Hooks (always-on automation)
 
-Both CLIs support hooks that fire on session events. Auto-run a bottleneck scan on the first session start of the week.
+Both CLIs support hooks, but they work differently.
+
+**Claude Code** hooks accept natural language instructions and Claude interprets them:
 
 ```json
-// Claude Code: .claude/settings.json
+// .claude/settings.json
 {
   "hooks": {
     "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
@@ -117,14 +119,30 @@ Both CLIs support hooks that fire on session events. Auto-run a bottleneck scan 
 }
 ```
 
+**Gemini CLI** hooks execute shell scripts that output JSON. Hook event names are PascalCase (`SessionStart`, `BeforeTool`, `AfterTool`, etc.) and each hook must be a script with a `command` field. For the "scan on session start" use case, a `SessionStart` hook can inject context into the session:
+
 ```json
-// Gemini CLI: .gemini/settings.json
+// .gemini/settings.json
 {
   "hooks": {
-    "onSessionStart": "If today is Monday and it's before 10am local time, silently invoke bottleneck-scanner on the default workspace and prepend findings to my first user message."
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "name": "monday-risk-brief",
+            "type": "command",
+            "command": ".gemini/hooks/monday-scan.sh",
+            "timeout": 30000
+          }
+        ]
+      }
+    ]
   }
 }
 ```
+
+Where `.gemini/hooks/monday-scan.sh` checks the day and outputs a JSON `additionalContext` payload. Note that Gemini hooks run shell scripts — they inject context but cannot directly invoke an agent. For scheduled agent runs, use a cron job (`gemini -p "..."`) rather than a session hook.
 
 ---
 
