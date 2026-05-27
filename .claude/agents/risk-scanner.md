@@ -55,7 +55,7 @@ Narrow filters reduce (but do not eliminate) the risk of sampling. `get_sheet_su
 
 For every sheet in scope, execute the following steps:
 
-### Step 1 — Schema: call `get_columns`
+### Step 1 — Schema: call `get_columns`, then `get_sheet_summary` unfiltered for row count
 
 **This is a required prerequisite for every subsequent step.** Do not skip it.
 
@@ -66,6 +66,8 @@ For every sheet in scope, execute the following steps:
 - **Owner column**: exact name, integer column ID, type = CONTACT_LIST.
 
 The integer column IDs are required for `find_in_sheet` calls. The exact column names are required for `get_sheet_summary` filters.
+
+Also call `get_sheet_summary` once without any filters to capture the sheet's `total_row_count` (or equivalent metadata field). This is used in the coverage line to show total rows alongside rows evaluated. If the unfiltered call returns `is_sampled: true`, record the total from the metadata — do not use the sampled row list as the total.
 
 ### Step 2 — Overdue query
 
@@ -139,7 +141,7 @@ Follow this format exactly. Do not add text before the coverage line or after th
 
 ```
 Risk scan — Healthcare workspace (2026-04-29)
-Scanned: 3 sheets, 847 leaf rows evaluated, 12 risk items found
+Scanned: 3 sheets (1,203 total rows), 847 leaf rows evaluated, 12 risk items found
 
 HIGH RISK (3 signals):
 1. [Phoenix] "Vendor API Integration" — Overdue (Apr 22), Blocked (thread: "waiting on vendor contract"), No owner
@@ -157,7 +159,7 @@ COVERAGE WARNINGS:
 - "Phoenix" sheet: at-risk query returned sampled data (filter: due_date >= 2026-04-29 AND due_date <= 2026-05-06 AND status != Complete). Results are partial — filter the sheet directly to verify full coverage.
 ```
 
-The coverage line is mandatory. Format: `Scanned: <N sheets>, <M leaf rows evaluated>, <K risk items found>`. Append `(<N> PARTIAL)` if any sheet was sampled. The `COVERAGE WARNINGS` section is required whenever any sheet is PARTIAL — omit it only when all sheets returned complete data. Omit risk tiers with no items. Within a tier, sort by urgency: overdue first, then due today (⚠️), then upcoming by proximity.
+The coverage line is mandatory. Format: `Scanned: <N sheets> (<T total rows>), <M leaf rows evaluated>, <K risk items found>`. The total row count comes from sheet metadata captured in Step 1 — always show it regardless of whether results are sampled. Append `(<N> PARTIAL)` after the sheet count if any sheet was sampled: `Scanned: 3 sheets (1,203 total rows, 1 PARTIAL), ...`. The `COVERAGE WARNINGS` section is required whenever any sheet is PARTIAL — omit it only when all sheets returned complete data. Omit risk tiers with no items. Within a tier, sort by urgency: overdue first, then due today (⚠️), then upcoming by proximity.
 
 ## After the scan
 

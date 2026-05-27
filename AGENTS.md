@@ -39,6 +39,15 @@ Every Power Tool requires the Smartsheet MCP server to be registered before any 
 
 An agent missing its MCP server will fail silently or produce errors on the first tool call. If an agent seems to do nothing, verify MCP registration first.
 
+### Canonical MCP server name
+
+The MCP server **must** be registered under the name **`smartsheet`** on both runtimes. This name is the source of the tool prefix used in agent frontmatter:
+
+- Claude Code tools: `mcp__smartsheet__<tool_name>` (double-underscore, server name `smartsheet`)
+- Gemini CLI tools: `mcp_smartsheet_<tool_name>` (single-underscore, server name `smartsheet`)
+
+If the server is registered under any other name (e.g., `smartsheet-mcp`), the tool names in agent frontmatter will not resolve and the agent will fabricate results instead of calling tools — with no error message. The setup scripts enforce the correct name. If you register manually, use `smartsheet` exactly.
+
 ---
 
 ## Runtimes
