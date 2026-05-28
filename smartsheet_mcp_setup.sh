@@ -29,8 +29,8 @@ if [[ -f "$MCP_CONFIG_PATH" ]]; then
     echo -e "${BLUE}$MCP_CONFIG_PATH${NC}"
     echo
 
-    # Check if smartsheet already exists (canonical name)
-    if claude mcp list 2>/dev/null | grep -q "^smartsheet"; then
+    # Check if smartsheet already exists (canonical name — exact match, not smartsheet-mcp)
+    if claude mcp list 2>/dev/null | grep -qE "^smartsheet( |$)"; then
         echo -e "${YELLOW}Warning: smartsheet is already configured.${NC}"
         echo "Proceeding will override the existing configuration."
         echo
