@@ -29,9 +29,9 @@ if [[ -f "$MCP_CONFIG_PATH" ]]; then
     echo -e "${BLUE}$MCP_CONFIG_PATH${NC}"
     echo
 
-    # Check if smartsheet-mcp already exists
-    if claude mcp list 2>/dev/null | grep -q "smartsheet-mcp"; then
-        echo -e "${YELLOW}Warning: smartsheet-mcp is already configured.${NC}"
+    # Check if smartsheet already exists (canonical name — exact match, not smartsheet-mcp)
+    if claude mcp list 2>/dev/null | grep -qE "^smartsheet( |$)"; then
+        echo -e "${YELLOW}Warning: smartsheet is already configured.${NC}"
         echo "Proceeding will override the existing configuration."
         echo
         read -p "Continue? (y/N): " -n 1 -r
@@ -41,12 +41,22 @@ if [[ -f "$MCP_CONFIG_PATH" ]]; then
             exit 0
         fi
         echo
-        echo "Removing existing smartsheet-mcp configuration..."
-        if ! claude mcp remove smartsheet-mcp; then
+        echo "Removing existing smartsheet configuration..."
+        if ! claude mcp remove smartsheet; then
             echo -e "${RED}Error: Failed to remove existing configuration${NC}"
             exit 1
         fi
         echo -e "${GREEN}Existing configuration removed.${NC}"
+        echo
+    # Also clean up old smartsheet-mcp name if present from a previous setup run
+    elif claude mcp list 2>/dev/null | grep -q "smartsheet-mcp"; then
+        echo -e "${YELLOW}Found old 'smartsheet-mcp' registration — replacing with canonical name 'smartsheet'.${NC}"
+        echo
+        if ! claude mcp remove smartsheet-mcp; then
+            echo -e "${RED}Error: Failed to remove old configuration${NC}"
+            exit 1
+        fi
+        echo -e "${GREEN}Old configuration removed.${NC}"
         echo
     fi
 else
@@ -80,8 +90,9 @@ echo "Token received (${#API_TOKEN} characters)"
 echo
 
 # Add MCP configuration using Claude Code CLI
+# IMPORTANT: Must be registered as "smartsheet" — agent tool names are mcp__smartsheet__*
 echo "Configuring Smartsheet MCP..."
-if claude mcp add --transport http smartsheet-mcp \
+if claude mcp add --transport http smartsheet \
     https://mcp.smartsheet.com \
     -H "Authorization:Bearer ${API_TOKEN}"; then
 
@@ -89,7 +100,7 @@ if claude mcp add --transport http smartsheet-mcp \
     echo -e "${GREEN}Setup complete!${NC}"
     echo
     echo "Configuration details:"
-    echo -e "  • MCP Name: ${BLUE}smartsheet-mcp${NC}"
+    echo -e "  • MCP Name: ${BLUE}smartsheet${NC}"
     echo -e "  • Endpoint: ${BLUE}https://mcp.smartsheet.com${NC}"
     echo -e "  • Config Path: ${BLUE}$MCP_CONFIG_PATH${NC}"
     echo
