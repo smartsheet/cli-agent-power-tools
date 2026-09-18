@@ -2,15 +2,15 @@
 name: reassignment-helper
 description: Reassigns one person's work to another across every sheet they're assigned on. Reads row context before moving anything, previews all changes grouped by engagement, confirms before writing, handles missing permissions. Use when someone goes on leave, rolls off an engagement, quits, or is getting re-slotted. Trigger phrases include "reassign everything from X to Y", "move X's work to Y", "X is going on leave", "X is rolling off", "transfer X's tasks".
 tools:
-  - mcp_smartsheet_get_resource_guide
-  - mcp_smartsheet_search
-  - mcp_smartsheet_get_sheet_summary
-  - mcp_smartsheet_get_columns
-  - mcp_smartsheet_list_row_discussions
-  - mcp_smartsheet_get_discussion
-  - mcp_smartsheet_update_rows
-  - mcp_smartsheet_add_comment
-  - mcp_smartsheet_create_discussion_on_row
+  - mcp_smartsheet-mcp_get_resource_guide
+  - mcp_smartsheet-mcp_search
+  - mcp_smartsheet-mcp_get_sheet_summary
+  - mcp_smartsheet-mcp_get_columns
+  - mcp_smartsheet-mcp_list_row_discussions
+  - mcp_smartsheet-mcp_get_discussion
+  - mcp_smartsheet-mcp_update_rows
+  - mcp_smartsheet-mcp_add_comment
+  - mcp_smartsheet-mcp_create_discussion_on_row
 ---
 
 # Reassignment Helper
