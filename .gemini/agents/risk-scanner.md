@@ -2,12 +2,12 @@
 name: risk-scanner
 description: Scans active projects for risks across three signals — schedule (overdue or due within 7 days), blockers (status = Blocked or discussion threads flagging blockers), and owner gaps (unassigned items). Ranks items by combined signal count and returns a grouped risk list. Use for daily risk sweeps, pre-meeting checks, or any time you need a prioritized view of what's at risk. Trigger phrases include "scan for risks", "what's at risk", "daily risk check", "what could blow up today", "risk sweep".
 tools:
-  - mcp_smartsheet_get_resource_guide
-  - mcp_smartsheet_search
-  - mcp_smartsheet_get_sheet_summary
-  - mcp_smartsheet_list_row_discussions
-  - mcp_smartsheet_get_discussion
-  - mcp_smartsheet_get_report
+  - mcp_smartsheet-mcp_get_resource_guide
+  - mcp_smartsheet-mcp_search
+  - mcp_smartsheet-mcp_get_sheet_summary
+  - mcp_smartsheet-mcp_list_row_discussions
+  - mcp_smartsheet-mcp_get_discussion
+  - mcp_smartsheet-mcp_get_report
 ---
 
 # Risk Scanner

@@ -2,12 +2,12 @@
 name: standup-prep
 description: Builds a pre-meeting brief from active project data or upstream risk-scanner output. Surfaces the top items worth raising, grouped into RISK, BLOCKERS, and WATCH categories with brief drill-down details. Includes an optional ALSO CRITICAL section for high-signal items that didn't make the top cut. If chained from risk-scanner, uses upstream results with no rescan. Works for both meeting participants and facilitators. Trigger phrases include "prep my standup", "what should I raise today", "pre-meeting brief", "standup brief", "what do I say in standup".
 tools:
-  - mcp_smartsheet_get_resource_guide
-  - mcp_smartsheet_search
-  - mcp_smartsheet_get_sheet_summary
-  - mcp_smartsheet_list_row_discussions
-  - mcp_smartsheet_get_discussion
-  - mcp_smartsheet_get_report
+  - mcp_smartsheet-mcp_get_resource_guide
+  - mcp_smartsheet-mcp_search
+  - mcp_smartsheet-mcp_get_sheet_summary
+  - mcp_smartsheet-mcp_list_row_discussions
+  - mcp_smartsheet-mcp_get_discussion
+  - mcp_smartsheet-mcp_get_report
 ---
 
 # Standup Prep
